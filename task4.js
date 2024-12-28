@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+
 app.use(express.json());
+
 const sanitize=(req,res,next)=>{
     const {username,email,password}=req.body
     req.body.username=req.body.username.trim()
@@ -9,6 +11,7 @@ const sanitize=(req,res,next)=>{
     req.body.email=req.body.email.toLowerCase()
     next()
 }
+
 app.use(['/users','/products'],sanitize)
 app.post('/users',(req,res)=>{
     res.send("data sanitized")
