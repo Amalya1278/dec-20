@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+
 app.use(express.json());
+
 const validation = (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -19,6 +21,7 @@ if(!email.includes("@") || email.indexOf("@")==0 || email.indexOf("@")==email.le
 
   next();
 };
+
 app.post('/users', validation, (req, res) => {
   res.status(200).send(`success`);
 });
