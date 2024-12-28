@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const PORT = 3001;
+
 app.use(express.json());
+
 const validateId = (req, res, next) => {
     if (!req.body.user_id) {
       return res.status(400).send("something is wrong with user_id" );
@@ -21,6 +23,7 @@ const validateId = (req, res, next) => {
     }
     next(); 
   };
+
   app.post('/orders', validateId, checkUserExists, (req, res) => {
     res.status(201).send( " successfull" );
   });
